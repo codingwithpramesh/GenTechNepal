@@ -1,4 +1,5 @@
 ﻿using GenTechNepal.API.Data;
+using GenTechNepal.API.Data.Interface;
 using GenTechNepal.API.DTO;
 using GenTechNepal.API.Models;
 using Microsoft.AspNetCore.Http;
@@ -11,38 +12,30 @@ namespace GenTechNepal.API.Controllers
     [ApiController]
     public class CompanyController : ControllerBase
     {
-        private readonly ApplicationDbContext _context;
-        public CompanyController(ApplicationDbContext context)
+        private readonly Icompanyservice _service;
+        public CompanyController(Icompanyservice service)
         {
-            _context = context;  
+            _service = service;  
         }
         [HttpGet("GetAll")]
         public IActionResult GetAll()
         {
-            var data = _context.companies.ToList();
+            var data = _service.GetAll();
             return Ok(data);
         }
 
         [HttpPost("Create")]
-        public IActionResult Create(CompanyDto company)
+        public async Task<IActionResult> Create(CompanyDto company, IFormFile file)
         {
-            var a = new Company
-            {
-                Name = company.Name,
-                ContactNumber = company.ContactNumber,
-                EmailAddress = company.EmailAddress,
-               
-            };
-            _context.companies.Add(a);
-            _context.SaveChanges();
-            return Ok(a);
+          // await _service.AddAsync(company);
+            return Ok();
 
         }
 
         [HttpPut("update")]
         public IActionResult update(int id, CompanyDto company)
         {
-            var data = _context.companies.Find(id);
+           /* var data = _context.companies.Find(id);
             if (data != null)
             {
                 data.Name = company.Name;
@@ -53,57 +46,65 @@ namespace GenTechNepal.API.Controllers
                 _context.SaveChanges();
                 return Ok(data);
             }
-            return NotFound();
+            return NotFound();*/
+           return Ok();
         }
 
 
         [HttpGet("Update")]
         public async Task<IActionResult> Update(int id)
         {
-            var data = await _context.companies.FindAsync(id);
-            if (data == null)
-            {
-                return NotFound();
-            }
-            return Ok(data);
+            /* var data = await _context.companies.FindAsync(id);
+             if (data == null)
+             {
+                 return NotFound();
+             }
+             return Ok(data);*/
+
+            return Ok();
         }
 
 
         [HttpGet("GetDelete")]
         public IActionResult GetDelete(int id)
         {
-            var data = _context.companies.Find(id);
+
+            return Ok();
+            /*var data = _context.companies.Find(id);
             if (data != null)
             {
                 return Ok(data);
             }
-            return NotFound();
+            return NotFound();*/
         }
 
         [HttpDelete("Delete")]
         public IActionResult Delete(int id)
         {
-            var data = _context.companies.Find(id);
+            return Ok();
+           /* var data = _context.companies.Find(id);
             if (data != null)
             {
                 _context.companies.Remove(data);
                 _context.SaveChanges();
                 return Ok();
             }
-            return NotFound();
+            return NotFound();*/
         }
 
 
         [HttpGet("Details")]
         public IActionResult Details(int id)
         {
-            var user = _context.companies.Find(id);
+
+            return Ok();
+            /*var user = _context.companies.Find(id);
 
             if (user == null)
             {
                 return NotFound();
             }
-            return Ok(user);
+            return Ok(user);*/
         }
     }
 }

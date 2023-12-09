@@ -4,6 +4,12 @@ namespace GenTechNepal.Web.Controllers
 {
     public class CompanyController : Controller
     {
+
+    
+        public CompanyController()
+        {
+            
+        }
         public IActionResult Index()
         {
             return View();

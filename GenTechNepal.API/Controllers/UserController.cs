@@ -1,4 +1,5 @@
 ﻿using GenTechNepal.API.Data;
+using GenTechNepal.API.Data.Interface;
 using GenTechNepal.API.DTO;
 using GenTechNepal.API.Models;
 using Microsoft.AspNetCore.Http;
@@ -11,16 +12,16 @@ namespace GenTechNepal.API.Controllers
     [ApiController]
     public class UserController : ControllerBase
     {
-        private readonly ApplicationDbContext _context;
-        public UserController(ApplicationDbContext context)
+        private readonly IuserService _service;
+        public UserController(IuserService service)
         {
-            _context = context;
+            _service = service;
         }
 
         [HttpGet("GetAll")]
         public IActionResult GetAll()
         {
-            var data = _context.users.ToList();
+            var data = _service.GetAll();
             return Ok(data);
         }
 

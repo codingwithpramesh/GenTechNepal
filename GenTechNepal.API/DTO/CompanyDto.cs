@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace GenTechNepal.API.DTO
 {
@@ -15,5 +16,8 @@ namespace GenTechNepal.API.DTO
         public string? EmailAddress { get; set; }
 
         public string? CompanyLogo { get; set; }
+
+        [NotMapped]
+        public IFormFile? Logo { get; set; }
     }
 }
