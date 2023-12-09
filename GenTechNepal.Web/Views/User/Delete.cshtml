@@ -1,5 +1,59 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@model User
+
+
 @{
+    ViewData["Title"] = "Create user";
 }
+<form asp-controller="user" asp-action="delete" method="post" enctype="multipart/form-data">
+    <div class="row">
+        <div class="col-md-8 offset-2">
+
+            <div class="form-group">
+                <label asp-for="Username">Username</label>
+                <input asp-for="Username" class="form-control" />
+                <span asp-validation-for="Username"></span>
+            </div>
+
+
+            <div class="form-group">
+                <label asp-for="FullName">Fullname</label>
+                <input asp-for="FullName" class="form-control" />
+                <span asp-validation-for="FullName"></span>
+            </div>
+
+
+            <div class="form-group">
+                <label asp-for="EmailAddress">Email Address</label>
+                <input asp-for="EmailAddress" class="form-control" />
+                <span asp-validation-for="EmailAddress"></span>
+            </div>
+
+
+            <div class="form-group">
+                <label asp-for="ProfilePicture">Profile Picture</label>
+                <input type="file" asp-for="ProfilePicture" class="form-control" />
+                <span asp-validation-for="ProfilePicture"></span>
+            </div>
+
+
+            <div class="form-group">
+                <label asp-for="ContactNumber">Contact Number</label>
+                <input asp-for="ContactNumber" class="form-control" />
+                <span asp-validation-for="ContactNumber"></span>
+            </div>
+
+
+            <div class="form-group">
+                <label asp-for="CompanyId">Company Id</label>
+                <input asp-for="CompanyId" class="form-control" />
+                <span asp-validation-for="CompanyId"></span>
+            </div>
+
+            <div class="form-group pt-3">
+                <button type="submit" asp-controller="User" asp-action="Delete" class="btn btn-primary">Delete</button>
+            </div>
+        </div>
+    </div>
+
+</form>@*
+ 

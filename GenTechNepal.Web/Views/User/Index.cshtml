@@ -1,5 +1,40 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@model List<User>
+
 @{
+    ViewData["Title"] = "List Of Data";
 }
+
+<div class="row">
+    <div class="col-md-8 offset-2">
+        <table class="table">
+            <tr>
+                <td>@Html.DisplayNameFor(Model =>Model.First().Username) </td>
+                <td>@Html.DisplayNameFor(Model =>Model.First().FullName) </td>
+                <td>@Html.DisplayNameFor(Model =>Model.First().EmailAddress) </td>
+                <td>@Html.DisplayNameFor(Model =>Model.First().ProfilePicture) </td>
+                <td>@Html.DisplayNameFor(Model =>Model.First().ContactNumber) </td>
+                <td>@Html.DisplayNameFor(Model =>Model.First().CompanyId) </td>
+                <td>Actions</td>
+            </tr>
+
+            @foreach (var abc in Model)
+            {
+                <tr>
+                    <td> @Html.DisplayFor(Model => abc.Username)</td>
+                    <td> @Html.DisplayFor(Model => abc.FullName)</td>
+                    <td> @Html.DisplayFor(Model => abc.EmailAddress)</td>
+                    <td> @Html.DisplayFor(Model => abc.ProfilePicture)</td>
+                    <td> @Html.DisplayFor(Model => abc.ContactNumber)</td>
+                    <td> @Html.DisplayFor(Model => abc.CompanyId)</td>
+                    <td>
+                        <a asp-action="Update" asp-route-id="@abc.Id">Edit</a>
+                        <a asp-action="Delete" asp-route-id="@abc.Id">Delete</a>
+                        <a asp-action="Details" asp-route-id="@abc.Id">Details</a>
+                    </td>
+                </tr>
+            }
+
+
+        </table>
+    </div>
+</div>
